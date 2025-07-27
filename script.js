@@ -5,7 +5,6 @@ const navLinks = document.querySelectorAll('.nav-link');
 const pages = document.querySelectorAll('.page');
 const homeText = document.querySelector('.home-text');
 const sceneContainer = document.querySelector('.scene-container');
-const photoFrameDesktop = document.querySelector('.photo-frame-desktop');
 const contactForm = document.getElementById('contactForm');
 
 // Navigation State
@@ -19,6 +18,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initializeAnimations();
     initializeContactForm();
     initializeSmoothScrolling();
+    initializeHomeButtons(); // <-- Add this line
 });
 
 // Navigation Functions
@@ -247,11 +247,11 @@ function initializeHomeAnimations() {
     }
     
     // Animate photo frame
-    if (photoFrameDesktop) {
-        setTimeout(() => {
-            photoFrameDesktop.classList.add('loaded');
-        }, 1100);
-    }
+    // if (photoFrameDesktop) {
+    //     setTimeout(() => {
+    //         photoFrameDesktop.classList.add('loaded');
+    //     }, 1100);
+    // }
 }
 
 // Contact Form Functions
@@ -411,4 +411,21 @@ function cleanup3DScene() {
 }
 
 // Cleanup on page unload
-window.addEventListener('beforeunload', cleanup3DScene);
+window.addEventListener('beforeunload', cleanup3DScene); 
+
+function initializeHomeButtons() {
+    const viewWorkBtn = document.getElementById('view-work-btn');
+    const getInTouchBtn = document.getElementById('get-in-touch-btn');
+    if (viewWorkBtn) {
+        viewWorkBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            window.location.hash = '#projects';
+        });
+    }
+    if (getInTouchBtn) {
+        getInTouchBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            window.location.hash = '#contact';
+        });
+    }
+} 
